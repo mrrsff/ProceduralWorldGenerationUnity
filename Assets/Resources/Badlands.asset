@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0042cf19dc2853b45b6ca6500686d8ea, type: 3}
+  m_Name: Badlands
+  m_EditorClassIdentifier: 
+  biomeName: Badlands
+  humidity: 0.2
+  temperature: 0.7
+  terrainTypes:
+  - name: Rock
+    altitude: 0
+    varyHeight: 0
+    variance: 1
+    heightMultiplier: 20
+    color: {r: 0.3019608, g: 0.21960784, b: 0.2, a: 0}
+  - name: Rock
+    altitude: 0.2
+    varyHeight: 0
+    variance: 1
+    heightMultiplier: 60
+    color: {r: 0.60784316, g: 0.4627451, b: 0.3254902, a: 0}
+  - name: Rock
+    altitude: 0.3
+    varyHeight: 0
+    variance: 1
+    heightMultiplier: 100
+    color: {r: 0.3019608, g: 0.21960786, b: 0.20000002, a: 0}
+  - name: Rock
+    altitude: 0.4
+    varyHeight: 0
+    variance: 1
+    heightMultiplier: 140
+    color: {r: 0.7735849, g: 0.5504393, b: 0.33935562, a: 0}
+  - name: Rock
+    altitude: 0.55
+    varyHeight: 0
+    variance: 1
+    heightMultiplier: 160
+    color: {r: 0.4339623, g: 0.29925162, b: 0.17399432, a: 0}
+  - name: Rock
+    altitude: 0.6
+    varyHeight: 0
+    variance: 1
+    heightMultiplier: 180
+    color: {r: 0.5188679, g: 0.36416614, b: 0.21782662, a: 0}
+  - name: Rock
+    altitude: 0.8
+    varyHeight: 0
+    variance: 1
+    heightMultiplier: 200
+    color: {r: 0.21698111, g: 0.15002087, b: 0.13407795, a: 0}
+  - name: Rock
+    altitude: 1.2
+    varyHeight: 0
+    variance: 1
+    heightMultiplier: 240
+    color: {r: 0.60784316, g: 0.46274513, b: 0.3254902, a: 0}
+  - name: Rock
+    altitude: 1.5
+    varyHeight: 0
+    variance: 1
+    heightMultiplier: 250
+    color: {r: 0.3019608, g: 0.21960786, b: 0.20000002, a: 0}
+  colorBlendFactor: 0.2
+  heightBlendFactor: 1

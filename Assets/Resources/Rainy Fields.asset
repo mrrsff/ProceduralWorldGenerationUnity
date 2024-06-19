@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0042cf19dc2853b45b6ca6500686d8ea, type: 3}
+  m_Name: Rainy Fields
+  m_EditorClassIdentifier: 
+  biomeName: Swamps
+  humidity: 0.8
+  temperature: 0.5
+  terrainTypes:
+  - name: Rock
+    altitude: 0
+    varyHeight: 0
+    variance: 1
+    heightMultiplier: -10
+    color: {r: 0.49056602, g: 0.30036297, b: 0.13189746, a: 1}
+  - name: Grass
+    altitude: 0.7
+    varyHeight: 0
+    variance: 1
+    heightMultiplier: 5
+    color: {r: 0.028657887, g: 0.26415092, b: 0.028657887, a: 1}
+  - name: Grass
+    altitude: 1
+    varyHeight: 0
+    variance: 1
+    heightMultiplier: 10
+    color: {r: 0.028657887, g: 0.26415092, b: 0.028657887, a: 1}
+  colorBlendFactor: 1.1
+  heightBlendFactor: 1

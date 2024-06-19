@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0042cf19dc2853b45b6ca6500686d8ea, type: 3}
+  m_Name: Ice Lands
+  m_EditorClassIdentifier: 
+  biomeName: Ice Lands
+  humidity: 0.6
+  temperature: 0.1
+  terrainTypes:
+  - name: Ice
+    altitude: 0
+    varyHeight: 0
+    variance: 0
+    heightMultiplier: 5
+    color: {r: 0.5254902, g: 0.8392157, b: 0.84705883, a: 1}
+  - name: Snow
+    altitude: 0.4
+    varyHeight: 0
+    variance: 0
+    heightMultiplier: 30
+    color: {r: 0.3671235, g: 0.46536025, b: 0.4716981, a: 0}
+  - name: Snow
+    altitude: 0.6
+    varyHeight: 0
+    variance: 0
+    heightMultiplier: 45
+    color: {r: 0.6840513, g: 0.78974277, b: 0.7924528, a: 0}
+  - name: Hill
+    altitude: 0.8
+    varyHeight: 0
+    variance: 0
+    heightMultiplier: 60
+    color: {r: 0.3490566, g: 0.33506143, b: 0.3210662, a: 1}
+  - name: Snow
+    altitude: 1.2
+    varyHeight: 0
+    variance: 1
+    heightMultiplier: 100
+    color: {r: 0.5254902, g: 0.83921576, b: 0.8470589, a: 1}
+  - name: Hill
+    altitude: 2
+    varyHeight: 0
+    variance: 0
+    heightMultiplier: 140
+    color: {r: 0.26758, g: 0.32523885, b: 0.34, a: 1}
+  colorBlendFactor: 1.1
+  heightBlendFactor: 1

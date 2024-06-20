@@ -32,6 +32,12 @@ namespace Axegen
         public List<TerrainChunk> terrainChunksVisible = new List<TerrainChunk>();
 
         bool updateChunks = true;
+
+        public void UpdateRenderDistance(int value)
+        {
+            renderDistance = value;
+            updateChunks = true;
+        }
         private void Start()
         {
             viewer = Camera.main.transform;

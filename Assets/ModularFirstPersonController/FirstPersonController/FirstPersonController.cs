@@ -198,8 +198,10 @@ public class FirstPersonController : MonoBehaviour
     {
         #region Camera
 
+        if (Cursor.lockState != CursorLockMode.Locked) return;
+
         // Control camera movement
-        if(cameraCanMove)
+        if (cameraCanMove)
         {
             yaw = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * mouseSensitivity;
 

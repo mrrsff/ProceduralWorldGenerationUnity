@@ -2,24 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Profiling;
-using UnityEngine.Jobs;
-using Unity.Jobs;
-using Unity.Collections;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Axegen
 {
-    public struct VegetationPlacement
-    {
-        public string name;
-        public Vector2Int chunkCoords;
-        public Vector3 position;
-        public Quaternion rotation;
-        public Vector3 scale;
-        public GameObject prefab;
-    }
     public class TerrainChunk
     {
         public Vector2Int coord;
@@ -90,16 +75,6 @@ namespace Axegen
             {
                 UpdateLOD(lod);
             }
-        }
-
-        public void Destroy()
-        {
-            GameObject.Destroy(chunkObject);
-        }
-
-        public void UpdatePosition(Vector3 position)
-        {
-            chunkObject.transform.position = position;
         }
 
         public void UpdateLOD(int lod)

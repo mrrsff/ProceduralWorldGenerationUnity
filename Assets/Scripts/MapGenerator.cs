@@ -163,8 +163,6 @@ namespace Axegen
                 colors = colors
             };
             mesh.RecalculateNormals();
-            //mesh.RecalculateBounds();
-            //mesh.RecalculateTangents();
 
             Profiler.EndSample();
 

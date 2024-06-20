@@ -58,6 +58,12 @@ namespace Axegen
 
         private void Update()
         {
+            // On ESC press, toggle cursor lock
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                Cursor.lockState = Cursor.lockState == CursorLockMode.Locked ? CursorLockMode.None : CursorLockMode.Locked;
+                Cursor.visible = Cursor.lockState == CursorLockMode.None;
+            }
             if (Input.GetKeyDown(KeyCode.F3))
             {
                 isOpen = !isOpen;

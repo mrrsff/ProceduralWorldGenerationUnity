@@ -8,13 +8,16 @@ namespace Axegen
     [CreateAssetMenu(fileName = "Biome Collection", menuName = "Axegen/Biome Collection")]
     public class BiomeCollection : ScriptableObject
     {
-        public float biomeBlendThreshold = 0.2f;
         public int chunkSize;
         public BiomeData[] biomes;
 
-        Dictionary<Vector2Int, Dictionary<BiomeData, float>[,]> chunkWeightsCache = new();
+        public int biomeBlendingFactor = 10;
+        public void SetBiomeBlendingFactor(int value)
+        {
+            biomeBlendingFactor = value;
+        }
 
-        private System.Random prng = new System.Random();
+        Dictionary<Vector2Int, Dictionary<BiomeData, float>[,]> chunkWeightsCache = new();
 
         public BiomeData ChooseBiome(int x, int z, Vector2Int chunkCoord)
         {
@@ -34,24 +37,6 @@ namespace Axegen
                 }
             }
             return bestBiome;
-        }
-        public Dictionary<BiomeData, float> GetBiomeWeights(int x, int z, Vector2Int chunkCoord)
-        {
-            Dictionary<BiomeData, float> result = new Dictionary<BiomeData, float>();
-            float temperature = BiomeValuesGenerator.instance.GetTemperature(x + chunkCoord.x * chunkSize, z + chunkCoord.y * chunkSize);
-            float humidity = BiomeValuesGenerator.instance.GetHumidity(x + chunkCoord.x * chunkSize, z + chunkCoord.y * chunkSize);
-            foreach (BiomeData biome in biomes)
-            {
-                float match = GetBiomeMatchValue(biome, temperature, humidity);
-                if (match > biomeBlendThreshold)
-                {
-                    continue;
-                }
-                match = 1 / (match + 0.1f);
-                match = Mathf.Pow(match + 1, 10);
-                result.Add(biome, match);
-            }
-            return result;
         }
 
         public Dictionary<BiomeData, float>[,] GetChunkBiomeWeights(Vector2Int chunkCoord)
@@ -75,12 +60,8 @@ namespace Axegen
                     foreach (BiomeData biome in biomes)
                     {
                         float match = GetBiomeMatchValue(biome, temperature, humidity);
-                        //if (match > biomeBlendThreshold)
-                        //{
-                        //    continue;
-                        //}
                         match = 1 / (match + 0.1f);
-                        match = Mathf.Pow(match + 1, 10);
+                        match = Mathf.Pow(match + 1, biomeBlendingFactor);
                         result[x, z].Add(biome, match);
                     }
                 }
@@ -111,6 +92,10 @@ namespace Axegen
                         Color colorValue = Color.black;
                         foreach (var weight in weights)
                         {
+                            if(weight.Value <= 0.001f) // Don't calculate if the weight is too low.
+                            {
+                                continue;
+                            }
                             totalWeight += weight.Value;
                             totalAltitude += weight.Key.GetHeightMultiplier(x, z, ref data) * weight.Value;
                             colorValue += weight.Key.GetColor(data[x, z]) * weight.Value;

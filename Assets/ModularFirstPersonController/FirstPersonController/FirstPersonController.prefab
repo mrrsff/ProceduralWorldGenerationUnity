@@ -119,7 +119,7 @@ Rigidbody:
   m_GameObject: {fileID: 4459864850019384750}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 0.1
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -189,6 +189,9 @@ MonoBehaviour:
   crouchKey: 306
   crouchHeight: 0.75
   speedReduction: 0.5
+  enableFlight: 0
+  flightKey: 102
+  flightSpeed: 10
   enableHeadBob: 0
   joint: {fileID: 4459864851508666808}
   bobSpeed: 10
@@ -305,7 +308,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   volumeAnchorOverride: {fileID: 0}
-  antialiasing: 0
+  antialiasing: 1
   SMAAQuality: 2
   dithering: 0
   stopNaNs: 0

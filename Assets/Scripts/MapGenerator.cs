@@ -39,7 +39,7 @@ namespace Axegen
         public float[,] GetHeightMap(Vector2Int coord) => Noise.GenerateNoiseMap(chunkSize+1, chunkSize+1, seed, noiseScale, octaves, persistance, lacunarity, new Vector2(coord.x * chunkSize, coord.y * chunkSize) + offset, Noise.NormalizeMode.Global);
 
         Queue<ThreadInfo<MapData>> mapDataThreadInfoQueue = new Queue<ThreadInfo<MapData>>();
-        Queue<ThreadInfo<MeshData[]>> meshDataThreadInfoQueue = new Queue<ThreadInfo<MeshData[]>>();
+        public Queue<ThreadInfo<MeshData[]>> meshDataThreadInfoQueue = new Queue<ThreadInfo<MeshData[]>>();
 
         private void Awake()
         {
@@ -74,7 +74,7 @@ namespace Axegen
             }
             catch (Exception e)
             {
-                Debug.LogError(e);
+                Debug.LogError("Error in MapDataThread: " + e);
             }
         }
         IEnumerator MapDataRoutine()
@@ -108,7 +108,7 @@ namespace Axegen
             }
             catch (Exception e)
             {
-                Debug.LogError(e);
+                Debug.LogError("Error in MeshDataThread: " + e);
             }
         }
         IEnumerator MeshDataRoutine()

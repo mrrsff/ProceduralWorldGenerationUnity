@@ -162,10 +162,10 @@ MonoBehaviour:
     m_Value: 5
   maximumHeight:
     m_OverrideState: 1
-    m_Value: 50
+    m_Value: 500
   meanFreePath:
     m_OverrideState: 1
-    m_Value: 200
+    m_Value: 1000
   enableVolumetricFog:
     m_OverrideState: 1
     m_Value: 1
@@ -453,7 +453,7 @@ MonoBehaviour:
       m_Value: 0.575
     castShadows:
       m_OverrideState: 1
-      m_Value: 1
+      m_Value: 0
   layerB:
     cloudMap:
       m_OverrideState: 0

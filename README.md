@@ -1,0 +1,1 @@
+For reasons that I could not figure out (my best guess for the reason is the relation between Unity and multithreading), this project does not work in build. So it must be run in Unity Editor. 

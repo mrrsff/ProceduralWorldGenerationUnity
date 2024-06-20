@@ -123,7 +123,7 @@ namespace Axegen
                     }
                     catch (Exception e)
                     {
-                        Debug.Log(e.Message);
+                        Debug.Log("Error in GetAltitudeAndColorMap: " + e);
                     }
                 }
             }

@@ -11,8 +11,8 @@ namespace Axegen
         [SerializeField] TextMeshProUGUI coordsText;
         [SerializeField] TextMeshProUGUI humidityText;
         [SerializeField] TextMeshProUGUI temperatureText;
-        [SerializeField] TextMeshProUGUI vegetationDensityText;
         [SerializeField] TextMeshProUGUI currentBiomeText;
+        [SerializeField] TextMeshProUGUI queueCountText;
 
         [SerializeField] bool isOpen;
 
@@ -23,11 +23,14 @@ namespace Axegen
         }
         IEnumerator UpdateFPS()
         {
-            var wait = new WaitForSeconds(.2f);
+            var wait = new WaitForSeconds(.5f);
             while (true)
             {
                 float avgFPS = 1.0f / Time.deltaTime;
                 UpdateFPS(avgFPS);
+
+                queueCountText.text = "In Queue: " + MapGenerator.instance.meshDataThreadInfoQueue.Count;
+
                 yield return wait;
             }
         }

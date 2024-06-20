@@ -32,6 +32,8 @@ namespace Axegen
 
         private List<TerrainType> sortedTerrainTypes;
 
+        bool isSorted = false;
+
         private System.Random rng = new System.Random();
         private float Random(float min, float max) => (float)rng.NextDouble() * (max - min) + min;
 
@@ -85,14 +87,16 @@ namespace Axegen
 
         private void OnValidate()
         {
-            if (terrainTypes.Count > 0)
-            {
-                SortTerrains();
-            }
+            isSorted = false;
         }
 
         public int GetClosestTerrainIndex(float height)
         {
+            if (!isSorted)
+            {
+                SortTerrains();
+                isSorted = true;
+            }
             // Find closest terrain type
             int index = 0;
             bool found = false;

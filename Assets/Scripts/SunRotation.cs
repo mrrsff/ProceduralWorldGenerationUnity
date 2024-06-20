@@ -19,6 +19,8 @@ namespace Axegen
 
         private bool isLightOpen = false;
 
+        bool paused = false;
+
         private void OnValidate()
         {
             SetTime(timeOfDay);
@@ -27,11 +29,32 @@ namespace Axegen
         private void Awake()
         {
             SetTime(timeOfDay);
+            cameraLight.gameObject.SetActive(isLightOpen);
         }
 
         private void Update()
         {
-            // If day
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                isLightOpen = !isLightOpen;
+                cameraLight.gameObject.SetActive(isLightOpen);
+            }
+
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                paused = !paused;
+            }
+            if (paused) return;
+
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                timeOfDay -= 1f;
+            }
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                timeOfDay += 1f;
+            }
+
             if (timeOfDay >= 5 && timeOfDay < 19)
             {
                 timeOfDay += Time.deltaTime / 60f * dayScale;
@@ -40,13 +63,6 @@ namespace Axegen
             {
                 timeOfDay += Time.deltaTime / 60f * nightScale;
             }
-
-            if(Input.GetKeyDown(KeyCode.L))
-            {
-                isLightOpen = !isLightOpen;
-                cameraLight.gameObject.SetActive(isLightOpen);
-            }
-
 
             SetTime(timeOfDay);
         }

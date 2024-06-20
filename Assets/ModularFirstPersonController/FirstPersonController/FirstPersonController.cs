@@ -116,6 +116,15 @@ public class FirstPersonController : MonoBehaviour
     private Vector3 originalScale;
 
     #endregion
+
+    #region Flight
+    public bool enableFlight = false;
+    public KeyCode flightKey = KeyCode.F;
+    public float flightSpeed = 10f;
+
+    private bool isFlying = false;
+
+    #endregion
     #endregion
 
     #region Head Bob
@@ -341,6 +350,42 @@ public class FirstPersonController : MonoBehaviour
 
         #endregion
 
+        #region Flight
+        if (enableFlight && Input.GetKeyDown(flightKey))
+        {
+            isFlying = !isFlying;
+        }
+
+        if (isFlying)
+        {
+            rb.useGravity = false;
+
+            float flySpeed = flightSpeed;
+
+            if (Input.GetKey(sprintKey))
+            {
+                flySpeed *= 2;
+            }
+
+            if (Input.GetKey(KeyCode.Q))
+            {
+                rb.velocity = -transform.up * flySpeed;
+            }
+            else if (Input.GetKey(KeyCode.E))
+            {
+                rb.velocity = transform.up * flySpeed;
+            }
+            else
+            {
+                rb.velocity = Vector3.zero;
+            }
+        }
+        else
+        {
+            rb.useGravity = true;
+        }
+        #endregion
+
         CheckGround();
 
         if(enableHeadBob)
@@ -368,9 +413,13 @@ public class FirstPersonController : MonoBehaviour
             {
                 isWalking = false;
             }
-
-            // All movement calculations shile sprint is active
-            if (enableSprint && Input.GetKey(sprintKey) && sprintRemaining > 0f && !isSprintCooldown)
+            // Flight movement
+            if (isFlying)
+            {
+                targetVelocity = transform.TransformDirection(targetVelocity) * flightSpeed;
+                rb.velocity = new Vector3(targetVelocity.x, rb.velocity.y, targetVelocity.z);
+            }
+            else if (enableSprint && Input.GetKey(sprintKey) && sprintRemaining > 0f && !isSprintCooldown)
             {
                 targetVelocity = transform.TransformDirection(targetVelocity) * sprintSpeed;
 
@@ -532,13 +581,6 @@ public class FirstPersonController : MonoBehaviour
     public override void OnInspectorGUI()
     {
         SerFPC.Update();
-
-        EditorGUILayout.Space();
-        GUILayout.Label("Modular First Person Controller", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 16 });
-        GUILayout.Label("By Jess Case", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Normal, fontSize = 12 });
-        GUILayout.Label("version 1.0.1", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Normal, fontSize = 12 });
-        EditorGUILayout.Space();
-
         #region Camera Setup
 
         EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
@@ -616,7 +658,7 @@ public class FirstPersonController : MonoBehaviour
         GUI.enabled = fpc.enableSprint;
         fpc.unlimitedSprint = EditorGUILayout.ToggleLeft(new GUIContent("Unlimited Sprint", "Determines if 'Sprint Duration' is enabled. Turning this on will allow for unlimited sprint."), fpc.unlimitedSprint);
         fpc.sprintKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Sprint Key", "Determines what key is used to sprint."), fpc.sprintKey);
-        fpc.sprintSpeed = EditorGUILayout.Slider(new GUIContent("Sprint Speed", "Determines how fast the player will move while sprinting."), fpc.sprintSpeed, fpc.walkSpeed, 20f);
+        fpc.sprintSpeed = EditorGUILayout.Slider(new GUIContent("Sprint Speed", "Determines how fast the player will move while sprinting."), fpc.sprintSpeed, fpc.walkSpeed, 50f);
 
         //GUI.enabled = !fpc.unlimitedSprint;
         fpc.sprintDuration = EditorGUILayout.Slider(new GUIContent("Sprint Duration", "Determines how long the player can sprint while unlimited sprint is disabled."), fpc.sprintDuration, 1f, 20f);
@@ -689,6 +731,18 @@ public class FirstPersonController : MonoBehaviour
         fpc.crouchKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Crouch Key", "Determines what key is used to crouch."), fpc.crouchKey);
         fpc.crouchHeight = EditorGUILayout.Slider(new GUIContent("Crouch Height", "Determines the y scale of the player object when crouched."), fpc.crouchHeight, .1f, 1);
         fpc.speedReduction = EditorGUILayout.Slider(new GUIContent("Speed Reduction", "Determines the percent 'Walk Speed' is reduced by. 1 being no reduction, and .5 being half."), fpc.speedReduction, .1f, 1);
+        GUI.enabled = true;
+
+        #endregion
+
+        #region Flight
+        EditorGUILayout.Space();
+        GUILayout.Label("Flight", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleLeft, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
+        fpc.enableFlight = EditorGUILayout.ToggleLeft(new GUIContent("Enable Flight", "Determines if the player is allowed to fly."), fpc.enableFlight);
+
+        GUI.enabled = fpc.enableFlight;
+        fpc.flightSpeed = EditorGUILayout.Slider(new GUIContent("Flight Speed", "Determines how fast the player will move while flying."), fpc.flightSpeed, 1f, 500f);
+        fpc.flightKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Flight Key", "Determines what key is used to fly."), fpc.flightKey);
         GUI.enabled = true;
 
         #endregion

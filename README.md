@@ -2,6 +2,7 @@ You can use in-game sliders to change render distance.
 Also you can change the biome blending factor, to see effects it have on the algorithm.
 
 Keys:
+ESC -> Toggle player movement
 
 F3 -> Toggle GUI
 

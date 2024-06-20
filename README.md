@@ -1,5 +1,3 @@
-For reasons that I could not figure out (my best guess for the reason is the relation between Unity and multithreading), this project does not work in build. So it must be run in Unity Editor. 
-
 You can use in-game sliders to change render distance.
 Also you can change the biome blending factor, to see effects it have on the algorithm.
 

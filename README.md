@@ -1,3 +1,5 @@
+For detailed description you can see here: https://medium.com/@mrrsff/catmull-clark-subdivision-surface-algorithm-in-c-7a2b3768e074
+
 You can use in-game sliders to change render distance.
 Also you can change the biome blending factor, to see effects it have on the algorithm.
 
